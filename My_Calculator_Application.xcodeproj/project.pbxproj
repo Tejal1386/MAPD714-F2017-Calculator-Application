@@ -12,6 +12,7 @@
 		E43133581F738A9D003AD553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43133561F738A9D003AD553 /* Main.storyboard */; };
 		E431335A1F738A9D003AD553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43133591F738A9D003AD553 /* Assets.xcassets */; };
 		E431335D1F738A9D003AD553 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E431335B1F738A9D003AD553 /* LaunchScreen.storyboard */; };
+		E43133651F73927B003AD553 /* calculator image.png in Resources */ = {isa = PBXBuildFile; fileRef = E43133641F73927B003AD553 /* calculator image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E43133591F738A9D003AD553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E431335C1F738A9D003AD553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E431335E1F738A9D003AD553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43133641F73927B003AD553 /* calculator image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator image.png"; path = "../../../../Downloads/calculator image.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				E43133541F738A9D003AD553 /* ViewController.swift */,
 				E43133561F738A9D003AD553 /* Main.storyboard */,
 				E43133591F738A9D003AD553 /* Assets.xcassets */,
+				E43133641F73927B003AD553 /* calculator image.png */,
 				E431335B1F738A9D003AD553 /* LaunchScreen.storyboard */,
 				E431335E1F738A9D003AD553 /* Info.plist */,
 			);
@@ -124,6 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E43133651F73927B003AD553 /* calculator image.png in Resources */,
 				E431335D1F738A9D003AD553 /* LaunchScreen.storyboard in Resources */,
 				E431335A1F738A9D003AD553 /* Assets.xcassets in Resources */,
 				E43133581F738A9D003AD553 /* Main.storyboard in Resources */,
