@@ -1,10 +1,10 @@
-//
-//  ViewController.swift
-//  My_Calculator_Application
-//
-//  Created by Tejal Patel on 2017-09-21.
-//  Copyright © 2017 Centennial College. All rights reserved.
-//
+/*
+ Name: Tejal Patel
+ Date: 21st September 2017
+ StudentID: 300972812
+ Discription: Simple Calculator Application
+ Version 0.1: User Interface For Calculator App
+ */
 
 import UIKit
 
