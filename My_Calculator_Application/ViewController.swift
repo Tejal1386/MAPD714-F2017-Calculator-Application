@@ -3,7 +3,7 @@
  Date: 21st September 2017
  StudentID: 300972812
  Discription: Simple Calculator Application
- Version 0.2: Define Variables and Methods with some functionality
+ Version 0.3: Add more functionality
  */
 
 import UIKit
@@ -58,16 +58,38 @@ class ViewController: UIViewController {
                 displayLabel.text = String(sender.tag)
             }else  if displayLabel.text == "÷" {
                 displayLabel.text = String(sender.tag)
-            }else {
+            }else if sender.tag == 18  {
+                
+                if isDecimal == false
+                {
+                    isDecimal = true
+                    
+                   
+                    if displayLabel.text == ""
+                    {
+                        displayNumber = Double("0" + ".")!
+                        displayLabel.text = String(displayNumber)
+                    
+                    }else{
+                        displayNumber = Double(displayLabel.text! + ".")!
+                        displayLabel.text = String(displayNumber)
+                    }
+                }
+            }
+            else {
                 displayLabel.text = displayLabel.text! + String(sender.tag)
             }
-      }else if operation == true {
+        }else if operation == true {
         
-         displayLabel.text = String(sender.tag)
-         resultNumber = 0;
-         operation = false;
-        
-    }
+            displayLabel.text = String(sender.tag)
+            resultNumber = 0;
+            operation = false;
+            if isDecimal == false {
+                isDecimal = true
+                displayNumber = Double("0" + ".")!
+                displayLabel.text = String(displayNumber)
+            }
+        }
         
     }
     
@@ -85,30 +107,38 @@ class ViewController: UIViewController {
         
         if displayLabel.text != "" {
             if sender.tag == 11 {
+                
                 displayNumber = Double(displayLabel.text!)!
                 sign = "+"
                 displayLabel.text = "+"
+                
             } else if sender.tag == 12 {
+                
                 displayNumber = Double(displayLabel.text!)!
                 sign = "-"
                 displayLabel.text = "-"
             }else if sender.tag == 13 {
+               
                 displayNumber = Double(displayLabel.text!)!
                 sign = "x"
                 displayLabel.text = "x"
             }else if sender.tag == 14 {
+               
                 displayNumber = Double(displayLabel.text!)!
                 sign = "÷"
                 displayLabel.text = "÷"
             }else if sender.tag == 15 {
+               
                 //displayNumber = Double(displayLabel.text!)!
                 //sign = "+"
                 //displayLabel.text = "+"
             }else if sender.tag == 16 {
+              
                 //displayNumber = Double(displayLabel.text!)!
                 //sign = "+"
                 //displayLabel.text = "+"
             }else if sender.tag == 17 {
+                
                 displayNumber = 0
                 finalnumber = 0
                 sign = ""
@@ -147,7 +177,9 @@ class ViewController: UIViewController {
         
         }
         
-        operation = true;
+        operation = true
+        isDecimal = false
+        
     }
     
 }
