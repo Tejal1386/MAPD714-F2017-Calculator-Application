@@ -3,7 +3,7 @@
  Date: 21st September 2017
  StudentID: 300972812
  Discription: Simple Calculator Application
- Version 0.3: Added functions for decimal point, % and +/-
+ Version 0.4: did some changes in functions of decimal point, % and +/-
  */
 
 import UIKit
@@ -14,11 +14,14 @@ class ViewController: UIViewController {
     var displayNumber:Double = 0
     var resultNumber:Double = 0
     var finalnumber:Double = 0
+    var Temp:Double = 0
     var isDecimal:Bool = false
     var sign: String=""
     var operation: Bool = false
-    var searchCharacter: Character = "."
+   // var searchCharacter: Character = "."
     var isnegative: Bool = false
+    var number:String = ""
+    var equalsToCounter:Int = 0
     
     
     
@@ -30,6 +33,8 @@ class ViewController: UIViewController {
     //-------------------------  Inherited Methods-------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // adjusting text size on display screen for big numbers
         
         displayLabel.adjustsFontSizeToFitWidth = true;
         
@@ -43,7 +48,11 @@ class ViewController: UIViewController {
 
     //-------------------------  Action Methods-------------------------
     
-
+    //number button
+    ///
+    /// taking numbers 0 to 9 on display screen
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func numberButton(_ sender: UIButton) {
        
         if displayLabel.text == "0" {
@@ -68,21 +77,25 @@ class ViewController: UIViewController {
     
     
     // decimal point button
+    ///
+    /// adding decimal point to the number
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func decimalButton(_ sender: UIButton) {
         
-         if isDecimal == false
+        Temp = Double(displayLabel.text!)!
+        
+        if (Temp - floor(Temp) > 0.0000000000000001) { // 0.000001 can be changed depending on the level of precision you need
+            isDecimal = true
+        }
+
+        
+        if isDecimal == false
          {
                 isDecimal = true
-         
-         
-            let result = String(resultNumber)
+          
             
-            let characterset = CharacterSet(charactersIn: ".")
-           
-            if result.rangeOfCharacter(from: characterset.inverted) == nil {
-                print("string contains special characters")
-            }
-            else if displayLabel.text == ""
+             if displayLabel.text == ""
                 {
                     displayNumber = Double("0" + ".")!
                     displayLabel.text = String(displayNumber)
@@ -97,8 +110,11 @@ class ViewController: UIViewController {
         isDecimal = true
     }
     
-    // % button
-    
+    // percentage button
+    ///
+    /// calculate percentage for number display on screen
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func percentageButton(_ sender: UIButton) {
        
         
@@ -117,130 +133,149 @@ class ViewController: UIViewController {
     }
     
     
-    // plus or minus function
+    // plus or minus button
+    /// 
+    ///  negative and positive number
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func plus_minus_Button(_ sender: UIButton) {
-        if isnegative == false
-        { displayLabel.text = "-" + displayLabel.text!
-        isnegative = true
-        }
-        else
+      
+        if displayLabel.text != "0"
         {
+           Temp = Double(displayLabel.text!)!
+            if Temp > 0
+            {
+                displayLabel.text = "-" + displayLabel.text!
+                isnegative = true
+            }
+            
            
-            var number = displayLabel.text!
-            number.remove(at: number.startIndex)
-            displayLabel.text = String(number)
-            isnegative = false
+            else
+            {
+                number =  displayLabel.text!
+                number.remove(at: number.startIndex)
+                displayLabel.text = String(number)
+                isnegative = false
+            }
         }
         
     }
     
     
-    // arithmetic operation function
+    // arithmetic operation buttons
+    /// 
+    /// Doing Arithmetic operations (+ , - , * , / )
+    ///
+    /// Tag numbers of buttons ( = = 10, + = 11, - = 12, * = 13, ÷ = 14, AC = 17)
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func operationButton(_ sender: UIButton) {
         
-        // = = 10
-        // + = 11
-        // - = 12
-        // * = 13
-        // ÷ = 14
-        // % = 15
-        // +/- = 16
-        // AC = 17
-        
-        if displayNumber != 0
-        { finalnumber = Double(displayLabel.text!)!
-            
-        }
+    
+      
         
         if displayLabel.text != "" {
-            if sender.tag == 11 {
+            
+            if displayNumber != 0
+            { finalnumber = Double(displayLabel.text!)!
+            }
+            
+
+           
+            if sender.tag == 11 // addition
+            {
                 
                 displayNumber = Double(displayLabel.text!)!
                 sign = "+"
-                if resultNumber != 0
-                { resultNumber = displayNumber + finalnumber
-                    displayLabel.text = String(resultNumber)
-                }
-
+               
                 
-            } else if sender.tag == 12 {
+                
+            }
+            else if sender.tag == 12 // Subtraction
+            {
                 
                 displayNumber = Double(displayLabel.text!)!
                 sign = "-"
-                if resultNumber != 0
-                { resultNumber = displayNumber - finalnumber
-                    displayLabel.text = String(resultNumber)
-                }
-                
-
               
-            }else if sender.tag == 13 {
+            }
+            else if sender.tag == 13 // Multiplication
+            {
                
                 displayNumber = Double(displayLabel.text!)!
                 sign = "x"
-                if resultNumber != 0
-                { resultNumber = displayNumber * finalnumber
-                    displayLabel.text = String(resultNumber)
-                }
-                
-
-            }else if sender.tag == 14 {
+               
+            }
+            else if sender.tag == 14 // Division
+            {
                
                 displayNumber = Double(displayLabel.text!)!
                 sign = "÷"
-                if resultNumber != 0
-                { resultNumber = displayNumber / finalnumber
-                    displayLabel.text = String(resultNumber)
-                }
-                
-
-            }else if sender.tag == 16 {
                
-                // +/- button
-                
-            }else if sender.tag == 17 {
+            }
+            else if sender.tag == 17 // Clear Screen
+            {
                 resultNumber = 0
                 displayNumber = 0
                 finalnumber = 0
                 sign = ""
                 displayLabel.text = "0"
-            }else if sender.tag == 10 {
-               
+                equalsToCounter = 0
+                isDecimal = false
+                operation  = false
+               // searchCharacter = "."
+                isnegative = false
+                number = ""
                 
-                if displayNumber != 0 {
-                    
-                   
-                        finalnumber = Double(displayLabel.text!)!
-                    
-                    
-                    if finalnumber != 0 {
-                    
-                        if sign == "+"{
-                            resultNumber = displayNumber + finalnumber
-                           
-                        }else if sign == "-"{
-                            resultNumber = displayNumber - finalnumber
-                            
-                        }else if sign == "x"{
-                            resultNumber = displayNumber * finalnumber
-                           
-                        }else if sign == "÷"{
-                            resultNumber = displayNumber / finalnumber
-                            
-                        }
-                        displayLabel.text = String(resultNumber)
-                    }
-                    
-                }
             }
-        
-        
+           
+            
         }
         
         operation = true
         isDecimal = false
+        //equalsToCounter = equalsToCounter + 1
+    }
+    
+    
+    @IBAction func equalsToButton(_ sender: UIButton) {
+        
+            
+            
+            if equalsToCounter == 0
+            {
+                finalnumber = Double(displayLabel.text!)!
+            }
+            else
+            {
+                displayNumber = Double(displayLabel.text!)!
+            }
+            
+            
+            if sign == "+"{
+                resultNumber = displayNumber + finalnumber
+                
+            }else if sign == "-"{
+                resultNumber = displayNumber - finalnumber
+                
+            }else if sign == "x"{
+                resultNumber = displayNumber * finalnumber
+                
+            }else if sign == "÷"{
+                if finalnumber == 0
+                {  displayLabel.text = "Error" }
+                else{
+                    resultNumber = displayNumber / finalnumber}
+                
+            }
+            displayLabel.text = String(resultNumber)
+            
+        isDecimal = false
+        equalsToCounter = equalsToCounter + 1
+        
         
     }
+    
+    
     
 }
 

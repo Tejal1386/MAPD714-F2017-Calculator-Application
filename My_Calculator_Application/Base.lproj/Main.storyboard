@@ -251,7 +251,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="operationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v83-r2-l74"/>
+                                    <action selector="equalsToButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q85-j2-E8f"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -498,7 +498,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1194" y="549"/>
+            <point key="canvasLocation" x="-2087" y="279"/>
         </scene>
     </scenes>
 </document>
