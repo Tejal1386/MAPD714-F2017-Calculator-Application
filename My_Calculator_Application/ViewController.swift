@@ -3,7 +3,7 @@
  Date: 21st September 2017
  StudentID: 300972812
  Discription: Simple Calculator Application
- Version 0.4: did some changes in functions of decimal point, % and +/-
+ Version 0.4: final calculater application
  */
 
 import UIKit
@@ -18,10 +18,11 @@ class ViewController: UIViewController {
     var isDecimal:Bool = false
     var sign: String=""
     var operation: Bool = false
-   // var searchCharacter: Character = "."
     var isnegative: Bool = false
     var number:String = ""
     var equalsToCounter:Int = 0
+    var operationCounter:Int = 0
+    
     
     
     
@@ -62,8 +63,8 @@ class ViewController: UIViewController {
                 displayLabel.text = "0."
         }
         
-      if resultNumber == 0 && operation == false
-      {
+        if resultNumber == 0 && operation == false
+        {
         
                 displayLabel.text = displayLabel.text! + String(sender.tag)
       }
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
         
         Temp = Double(displayLabel.text!)!
         
-        if (Temp - floor(Temp) > 0.0000000000000001) { // 0.000001 can be changed depending on the level of precision you need
+        if (Temp - floor(Temp) > 0.0000000000000001) {
             isDecimal = true
         }
 
@@ -142,7 +143,7 @@ class ViewController: UIViewController {
       
         if displayLabel.text != "0"
         {
-           Temp = Double(displayLabel.text!)!
+           Temp = Double(displayLabel.text!)!           //checking for number is negative or not
             if Temp > 0
             {
                 displayLabel.text = "-" + displayLabel.text!
@@ -171,23 +172,17 @@ class ViewController: UIViewController {
     /// - Parameter sender: <#sender description#>
     @IBAction func operationButton(_ sender: UIButton) {
         
-    
+        Temp = 0
       
         
         if displayLabel.text != "" {
             
-            if displayNumber != 0
-            { finalnumber = Double(displayLabel.text!)!
-            }
             
-
-           
             if sender.tag == 11 // addition
             {
                 
                 displayNumber = Double(displayLabel.text!)!
                 sign = "+"
-               
                 
                 
             }
@@ -212,7 +207,7 @@ class ViewController: UIViewController {
                 sign = "÷"
                
             }
-            else if sender.tag == 17 // Clear Screen
+            else if sender.tag == 17 // Clear Screen and reset all variables
             {
                 resultNumber = 0
                 displayNumber = 0
@@ -222,9 +217,10 @@ class ViewController: UIViewController {
                 equalsToCounter = 0
                 isDecimal = false
                 operation  = false
-               // searchCharacter = "."
                 isnegative = false
                 number = ""
+                operationCounter = 0;
+                Temp = 0;
                 
             }
            
@@ -233,10 +229,14 @@ class ViewController: UIViewController {
         
         operation = true
         isDecimal = false
-        //equalsToCounter = equalsToCounter + 1
+        operationCounter =  operationCounter + 1;
+        
     }
     
-    
+    // equals to function
+    /// Represents result of arithmetic operations
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func equalsToButton(_ sender: UIButton) {
         
             
@@ -252,25 +252,25 @@ class ViewController: UIViewController {
             
             
             if sign == "+"{
-                resultNumber = displayNumber + finalnumber
+                resultNumber = displayNumber + finalnumber      // Addition
                 
             }else if sign == "-"{
-                resultNumber = displayNumber - finalnumber
+                resultNumber = displayNumber - finalnumber      // Subtraction
                 
             }else if sign == "x"{
-                resultNumber = displayNumber * finalnumber
+                resultNumber = displayNumber * finalnumber      // Multiplication
                 
             }else if sign == "÷"{
                 if finalnumber == 0
-                {  displayLabel.text = "Error" }
+                {  displayLabel.text = "Error" }                // If number is divide by 0 then it will show error
                 else{
-                    resultNumber = displayNumber / finalnumber}
+                    resultNumber = displayNumber / finalnumber} // Division
                 
             }
             displayLabel.text = String(resultNumber)
             
         isDecimal = false
-        equalsToCounter = equalsToCounter + 1
+        equalsToCounter = equalsToCounter + 1                   // counter used to operate serise of number calculation
         
         
     }
